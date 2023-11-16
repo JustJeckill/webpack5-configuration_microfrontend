@@ -13,7 +13,7 @@ interface EnvVariables {
 }
 
 export default (env: EnvVariables) => {
-    const isDev = env.mode === 'development'
+    const isDev = env.mode === 'development';
 
     const devServer = {
         port: env.port ?? 3000,
@@ -42,10 +42,10 @@ export default (env: EnvVariables) => {
         },
         plugins: [
             new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'public', 'index.html')}),
-            new webpack.ProgressPlugin(),
+            isDev && new webpack.ProgressPlugin(),
         ],
-        devServer: isDev ? devServer : undefined,
-        devtool: isDev ? 'inline-source-map' : false,
+        devServer: isDev ? devServer : undefined, // build in production mode is crushed if devServer has value = false
+        devtool: isDev && 'inline-source-map',
     }
 
     return config;
