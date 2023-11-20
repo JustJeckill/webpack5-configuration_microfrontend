@@ -1,6 +1,7 @@
 import {useState} from "react";
 import globalClasses from './global.module.scss';
 import classes from './App.module.scss';
+import {Outlet} from "react-router-dom";
 
 export const App = () => {
     const [count, setCount] = useState<number>(0);
@@ -15,6 +16,7 @@ export const App = () => {
         <div className={globalClasses.container}>
             <h1>{count}</h1>
             <button className={classes.button} onClick={increment}>Click</button>
+            <Outlet />
         </div>
     );
 };
