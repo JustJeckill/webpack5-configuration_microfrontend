@@ -1,6 +1,8 @@
-import {ModuleOptions} from "webpack";
+import { ModuleOptions } from "webpack";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import {BuildOptions} from "./types/types";
+import ReactRefreshTypeScript from 'react-refresh-typescript';
+
+import { BuildOptions } from "./types/types";
 
 export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
     const { mode } = options;
@@ -33,9 +35,51 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
     const tsLoader = {
         // ts-loader can work with jsx (react), if we use only js, we need to install babel-loader for react
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        use: [
+            {
+                loader: 'ts-loader',
+                options: {
+                    getCustomTransformers: () => ({
+                        before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
+                    }),
+                    transpileOnly: true,
+                }
+            }
+        ],
         exclude: /node_modules/,
     };
 
-    return [scssLoader, tsLoader];
+    const assetLoader = {
+            test: /\.(png|jpg|jpeg|gif)$/i,
+            type: 'asset/resource',
+        };
+
+    const svgLoader = {
+        test: /\.svg$/,
+        use: [
+            {
+                loader: '@svgr/webpack',
+                options: {
+                    icon: true,
+                    svgoConfig: {
+                        plugins: [
+                            {
+                                name: 'convertColors',
+                                params: {
+                                    currentColor: true,
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+    };
+
+    return [
+        scssLoader,
+        tsLoader,
+        assetLoader,
+        svgLoader
+    ];
 }

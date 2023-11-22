@@ -11,7 +11,8 @@
     "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "source/*": ["./src/*"],
+      "public/*": ["./public/*"]
     }
   },
   "ts-node": {

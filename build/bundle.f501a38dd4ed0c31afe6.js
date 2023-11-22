@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmicrofrontend_webpack5_configuration=self.webpackChunkmicrofrontend_webpack5_configuration||[]).push([[748],{748:(n,c,e)=>{e.r(c),e.d(c,{default:()=>o});var r=e(893);const o=function(){return(0,r.jsx)("h1",{children:"ABOUT"})}}}]);
