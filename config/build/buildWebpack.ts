@@ -18,6 +18,7 @@ export function buildWebpack(options: BuildOptions): webpack.Configuration {
         entry: paths.entry,
         output: {
             filename: 'bundle.[contenthash].js',
+            chunkFilename: '[id].[contenthash].js',
             path: paths.output,
             clean: true,
         },

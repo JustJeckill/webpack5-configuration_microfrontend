@@ -18,19 +18,18 @@ export const App = () => {
     // }, 5000);
 
     return (
-        <div className={globalClasses.container}>
+        <div className={globalClasses.container} data-testId={'App.DataTestId'}>
             <h1>Platform={__PLATFORM__}</h1>
-            <div>
+            <div data-testId={'PicturePNG.DataTestId'}>
                 <img src={picturePNG} alt="PicturePNG"/>
             </div>
-            <div>
+            <div data-testId={'PictureJPG.DataTestId'}>
                 <img src={pictureJPG} alt="PictureJPG"/>
             </div>
-            <div>
+            <div data-testId={'PictureSVG.DataTestId'}>
                 <PictureSVG width={'100'} height={'100'} color={'red'} />
             </div>
             <h1>{count}</h1>
-            <h2>gretyhrdhyjr</h2>
             <button className={classes.button} onClick={increment}>Click</button>
             <Outlet />
         </div>

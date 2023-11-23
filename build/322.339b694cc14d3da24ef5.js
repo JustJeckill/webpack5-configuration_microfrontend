@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmicrofrontend_webpack5_configuration=self.webpackChunkmicrofrontend_webpack5_configuration||[]).push([[322],{322:(e,n,c)=>{c.r(n),c.d(n,{default:()=>t});const t=function(){return React.createElement("h1",null,"SHOP")}}}]);

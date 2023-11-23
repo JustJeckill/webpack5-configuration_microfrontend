@@ -3,6 +3,7 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import ReactRefreshTypeScript from 'react-refresh-typescript';
 
 import { BuildOptions } from "./types/types";
+import { buildBabelLoader } from "./babel/buildBabelLoader";
 
 export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
     const { mode } = options;
@@ -49,6 +50,8 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
         exclude: /node_modules/,
     };
 
+    const babelLoader = buildBabelLoader(options);
+
     const assetLoader = {
             test: /\.(png|jpg|jpeg|gif)$/i,
             type: 'asset/resource',
@@ -78,7 +81,8 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
 
     return [
         scssLoader,
-        tsLoader,
+        // tsLoader,
+        babelLoader,
         assetLoader,
         svgLoader
     ];
